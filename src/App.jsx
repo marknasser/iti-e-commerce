@@ -41,7 +41,7 @@ function App() {
           />
           <Route
             path="/product/:id"
-            element={<Product getProduct={getProduct} />}
+            element={<Product getProduct={getProduct} isLoading={isLoading} />}
           />
         </Routes>
       </div>

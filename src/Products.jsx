@@ -10,7 +10,14 @@ function Products({ data = [], isLoading }) {
       <Row className="justify-content-center align-items-stretch gap-5 ">
         {data.length > 0 &&
           data.map((product, i) => (
-            <Card style={{ width: "18rem" }} xl={3} lg={4} md={6} sm={12}>
+            <Card
+              key={i}
+              style={{ width: "18rem" }}
+              xl={3}
+              lg={4}
+              md={6}
+              sm={12}
+            >
               <Card.Header
                 style={{
                   display: "block",
