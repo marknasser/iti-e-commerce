@@ -12,10 +12,15 @@ import Counter from "./Counter";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((json) => setProducts(json));
+      .then((json) => {
+        setIsLoading(false);
+        setProducts(json);
+      });
   }, []);
 
   function getProduct(id) {
@@ -30,7 +35,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/counter" element={<Counter />} />
-          <Route path="/products" element={<Products data={products} />} />
+          <Route
+            path="/products"
+            element={<Products data={products} isLoading={isLoading} />}
+          />
           <Route
             path="/product/:id"
             element={<Product getProduct={getProduct} />}

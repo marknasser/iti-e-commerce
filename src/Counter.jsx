@@ -3,10 +3,6 @@ import React, { useEffect, useState } from "react";
 function Counter() {
   const [counter, setCounter] = useState(0);
 
-  //   useEffect(() => {
-  //     setCounter((prev) => prev + 1);
-  //   }, [counter]);
-
   return (
     <div
       style={CounterMain()}
@@ -18,7 +14,7 @@ function Counter() {
         className="btn btn-danger
       "
       >
-        decrease
+        Decrease
       </button>
       <div>{counter}</div>
       <button
@@ -26,7 +22,7 @@ function Counter() {
         className="btn btn-success
       "
       >
-        increase
+        Increase
       </button>
     </div>
   );
