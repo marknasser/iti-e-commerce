@@ -2,8 +2,7 @@ import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Products({ data = [], isLoading }) {
-  if (isLoading) return <p style={{ fontSize: "60px" }}> Loading ...</p>;
+function Products({ data = [] }) {
   return (
     <Container>
       <div>Products Page</div>

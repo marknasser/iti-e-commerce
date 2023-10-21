@@ -1,10 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-function Product({ getProduct, isLoading }) {
+function Product({ getProduct }) {
   const { id } = useParams();
   const product = getProduct(+id);
-  if (isLoading) return <p style={{ fontSize: "60px" }}> Loading ...</p>;
   return (
     <Container>
       {product ? (

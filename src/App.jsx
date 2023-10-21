@@ -9,19 +9,11 @@ import AboutUs from "./AboutUs";
 import Product from "./Product";
 import Products from "./Products";
 import Counter from "./Counter";
+import useHandlingProducts from "./hooks/useHandlingProducts";
+import Wraper from "./Wraper";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setIsLoading(true);
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => {
-        setIsLoading(false);
-        setProducts(json);
-      });
-  }, []);
+  const { products, isLoading, isError } = useHandlingProducts();
 
   function getProduct(id) {
     return products.find((el) => el.id === id);
@@ -37,11 +29,19 @@ function App() {
           <Route path="/counter" element={<Counter />} />
           <Route
             path="/products"
-            element={<Products data={products} isLoading={isLoading} />}
+            element={
+              <Wraper isLoading={isLoading} isError={isError}>
+                <Products data={products} />
+              </Wraper>
+            }
           />
           <Route
             path="/product/:id"
-            element={<Product getProduct={getProduct} isLoading={isLoading} />}
+            element={
+              <Wraper isLoading={isLoading} isError={isError}>
+                <Product getProduct={getProduct} />
+              </Wraper>
+            }
           />
         </Routes>
       </div>
