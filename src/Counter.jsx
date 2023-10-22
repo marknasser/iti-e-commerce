@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "./store/counterSlice.js";
 
 function Counter() {
-  const [counter, setCounter] = useState(0);
+  const counterState = useSelector((state) => state.counter.value);
+  const dispatsh = useDispatch();
 
   return (
     <div
@@ -10,15 +12,15 @@ function Counter() {
     "
     >
       <button
-        onClick={() => setCounter((prev) => prev - 1)}
+        onClick={() => dispatsh(counterActions.decrement())}
         className="btn btn-danger
       "
       >
         Decrease
       </button>
-      <div>{counter}</div>
+      <div>{counterState}</div>
       <button
-        onClick={() => setCounter((prev) => prev + 1)}
+        onClick={() => dispatsh(counterActions.increment())}
         className="btn btn-success
       "
       >
