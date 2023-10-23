@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 
-import Header from "./Header";
-import Home from "./Home";
-import AboutUs from "./AboutUs";
-import Product from "./Product";
-import Products from "./Products";
-import Counter from "./Counter";
+// pages
+import Products from "./pages/Products";
+import Counter from "./pages/Counter";
+import Product from "./pages/Product";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+
+// layoouts - components - hooks
+import Wraper from "./layouts/Wraper";
+import Header from "./components/Header";
 import useHandlingProducts from "./hooks/useHandlingProducts";
-import Wraper from "./Wraper";
 
 function App() {
   const { products, isLoading, isError } = useHandlingProducts();
@@ -24,17 +25,16 @@ function App() {
       <Header />
       <div className="d-flex justify-content-center align-items-center">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/counter" element={<Counter />} />
           <Route
-            path="/products"
+            path="/"
             element={
               <Wraper isLoading={isLoading} isError={isError}>
                 <Products data={products} />
               </Wraper>
             }
           />
+          <Route path="/counter" element={<Counter />} />
+
           <Route
             path="/product/:id"
             element={
@@ -43,6 +43,9 @@ function App() {
               </Wraper>
             }
           />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </>
