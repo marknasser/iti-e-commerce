@@ -94,24 +94,53 @@ function Signup() {
         </Form.Group>
 
         {/* <Select name="gender" options={genderOptions} {...register("gender")} />   does not work*/}
+        <Form.Group controlId="gender">
+          <Row className="align-items-center">
+            <Col sm={2}>
+              <Form.Label className="m-0">(opitional) gender</Form.Label>
+            </Col>
+            <Col>
+              <Select
+                name="gender"
+                options={genderOptions}
+                onChange={(val) => {
+                  setSelectedGender(val);
+                }}
+              />
+            </Col>
+            {errors.password && (
+              <span className="error-input">
+                password must contain only numbers
+              </span>
+            )}
+          </Row>
+        </Form.Group>
+        <Form.Group controlId="gender">
+          <Row className="align-items-center">
+            <Col sm={2}>
+              <Form.Label className="m-0">(opitional) hobbies</Form.Label>
+            </Col>
+            <Col>
+              <Select
+                name="hobbies"
+                options={hobbiesOptions}
+                onChange={(vals) => {
+                  setSelectedHobbies(vals.map((val) => val.value));
+                }}
+                isMulti
+              />
+            </Col>
+            {errors.password && (
+              <span className="error-input">
+                password must contain only numbers
+              </span>
+            )}
+          </Row>
+        </Form.Group>
 
-        <Select
-          name="gender"
-          options={genderOptions}
-          onChange={(val) => {
-            setSelectedGender(val);
-          }}
-        />
-        <Select
-          name="hobbies"
-          options={hobbiesOptions}
-          onChange={(vals) => {
-            setSelectedHobbies(vals.map((val) => val.value));
-          }}
-          isMulti
-        />
-
-        <Button type="submit">Sign up</Button>
+        <Button type="submit" style={{ width: "fit-content", margin: "auto" }}>
+          Sign up
+        </Button>
       </Stack>
     </Form>
   );
